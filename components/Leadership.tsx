@@ -10,7 +10,7 @@ interface LeaderCardProps {
 function LeaderCard({ name, position, description, linkedin, github, isHighlighted }: LeaderCardProps) {
   return (
     <div
-      className={`group relative bg-royal dark:bg-royal-dark rounded-2xl p-6 text-white transform hover:scale-105 transition-all duration-300 hover:shadow-2xl ${
+      className={`leader-card group relative bg-royal dark:bg-royal-dark rounded-2xl p-6 text-white transform hover:scale-105 transition-all duration-300 hover:shadow-2xl will-change-transform ${
         isHighlighted ? 'ring-4 ring-cherry/50' : ''
       }`}
     >
@@ -82,19 +82,14 @@ const leadershipData = {
     description: 'Electrical Engineering, Third Year',
     linkedin: '#',
   },
-  jointSecretaries: [
+  secretaries: [
     { name: 'Sakshyam Aryal', position: 'Joint Secretary', description: 'Biomedical Engineering, Second Year', linkedin: '#' },
     { name: 'Ronak Patidar', position: 'Joint Secretary', description: 'Electrical & Communication Engineering, Third Year', linkedin: '#' },
     { name: 'Parul Goel', position: 'Joint Secretary', description: 'Electrical Engineering, Third Year', linkedin: '#' },
     { name: 'Anjali Goyal', position: 'Joint Secretary', description: 'Bio-Physics (TSLAS), Third Year', linkedin: '#' },
     { name: 'Parul Goel', position: 'Joint Secretary', description: 'Computer Science, Second Year', linkedin: '#' },
+    { name: 'Khushi Gupta', position: 'Finance Secretary', description: 'Electronics and Communication Engineering, Third Year', linkedin: '#' },
   ],
-  financeSecretary: {
-    name: 'Khushi Gupta',
-    position: 'Finance Secretary',
-    description: 'Electronics and Communication Engineering, Third Year',
-    linkedin: '#',
-  },
   coreMembers: [
     { name: 'Shivansih Singh', position: 'Core Member', description: 'AI/ML, Second Year', linkedin: '#' },
     { name: 'Harsh Singh Chahar', position: 'Core Member', description: 'Electronics & Communication Engineering, Second Year', linkedin: '#' },
@@ -125,9 +120,34 @@ const leadershipData = {
   ],
 };
 
+'use client';
+
+import { useEffect, useRef } from 'react';
+
 export default function Leadership() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const cards = sectionRef.current.querySelectorAll('.leader-card');
+        cards.forEach((card, index) => {
+          const speed = 0.03 + (index * 0.01);
+          const yPos = (window.scrollY - rect.top - window.innerHeight) * speed;
+          (card as HTMLElement).style.transform = `translateY(${yPos}px)`;
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <section id="leadership" className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+    <section ref={sectionRef} id="leadership" className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -179,22 +199,15 @@ export default function Leadership() {
             <div className="w-0.5 h-8 bg-gradient-to-b from-royal to-cherry" />
           </div>
 
-          {/* Joint Secretaries */}
+          {/* Secretaries */}
           <div>
             <h3 className="text-center text-lg font-semibold text-gray-700 dark:text-gray-300 mb-6">
-              Joint Secretaries
+              Secretaries
             </h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {leadershipData.jointSecretaries.map((member, index) => (
+              {leadershipData.secretaries.map((member, index) => (
                 <LeaderCard key={index} {...member} />
               ))}
-            </div>
-          </div>
-
-          {/* Finance Secretary */}
-          <div className="flex justify-center mt-8">
-            <div className="w-full max-w-xs">
-              <LeaderCard {...leadershipData.financeSecretary} />
             </div>
           </div>
 

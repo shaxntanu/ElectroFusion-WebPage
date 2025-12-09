@@ -42,9 +42,34 @@ const researchAreas = [
   },
 ];
 
+'use client';
+
+import { useEffect, useRef } from 'react';
+
 export default function ResearchAreas() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const cards = sectionRef.current.querySelectorAll('.research-card');
+        cards.forEach((card, index) => {
+          const speed = 0.05 + (index * 0.02);
+          const yPos = (window.scrollY - rect.top - window.innerHeight) * speed;
+          (card as HTMLElement).style.transform = `translateY(${yPos}px)`;
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <section id="research" className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+    <section ref={sectionRef} id="research" className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -63,7 +88,7 @@ export default function ResearchAreas() {
           {researchAreas.map((area, index) => (
             <div
               key={index}
-              className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 dark:border-gray-700 transition-all duration-300 overflow-hidden"
+              className="research-card group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-gray-100 dark:border-gray-700 transition-all duration-300 overflow-hidden will-change-transform"
             >
               {/* Background gradient on hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${area.color === 'royal' ? 'from-royal/5 to-cherry/5' : 'from-cherry/5 to-royal/5'} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />

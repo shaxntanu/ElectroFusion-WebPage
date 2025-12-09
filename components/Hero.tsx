@@ -1,9 +1,37 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+
 export default function Hero() {
+  const bgRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!bgRef.current) return;
+      const scrolled = window.scrollY;
+      bgRef.current.style.transform = `translateY(${scrolled * 0.5}px)`;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center pt-16 md:pt-20 bg-gradient-to-br from-white via-royal/5 to-cherry/10 dark:from-gray-900 dark:via-royal-dark/10 dark:to-cherry-dark/10"
+      className="min-h-screen flex items-center pt-16 md:pt-20 relative overflow-hidden"
     >
+      {/* Parallax Background */}
+      <div
+        ref={bgRef}
+        className="absolute inset-0 -z-10 bg-gradient-to-br from-white via-royal/5 to-cherry/10 dark:from-gray-900 dark:via-royal-dark/10 dark:to-cherry-dark/10 will-change-transform"
+      >
+        {/* Floating decorative elements */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-royal/10 rounded-full blur-2xl parallax-float" />
+        <div className="absolute top-40 right-20 w-40 h-40 bg-cherry/10 rounded-full blur-3xl parallax-float-delayed" />
+        <div className="absolute bottom-32 left-1/4 w-24 h-24 bg-royal/5 rounded-full blur-xl parallax-float" />
+        <div className="absolute bottom-20 right-1/3 w-36 h-36 bg-cherry/5 rounded-full blur-2xl parallax-float-delayed" />
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
@@ -43,9 +71,9 @@ export default function Hero() {
           {/* Illustration */}
           <div className="relative hidden lg:block">
             <div className="relative w-full aspect-square max-w-lg mx-auto">
-              {/* Background circles */}
-              <div className="absolute inset-0 bg-gradient-to-br from-royal/20 to-cherry/20 rounded-full blur-3xl animate-pulse" />
-              <div className="absolute inset-8 bg-gradient-to-tr from-cherry/30 to-royal/30 rounded-full blur-2xl" />
+              {/* Background circles with parallax */}
+              <div className="absolute inset-0 bg-gradient-to-br from-royal/20 to-cherry/20 rounded-full blur-3xl animate-pulse transform-gpu" style={{ transform: 'translateZ(0)' }} />
+              <div className="absolute inset-8 bg-gradient-to-tr from-cherry/30 to-royal/30 rounded-full blur-2xl transform-gpu" style={{ transform: 'translateZ(0)' }} />
               
               {/* Main graphic container */}
               <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500">
