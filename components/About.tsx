@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+
 const focusAreas = [
   {
     icon: (
@@ -37,10 +41,6 @@ const focusAreas = [
     description: 'High-performance motor drives and control algorithms',
   },
 ];
-
-'use client';
-
-import { useEffect, useRef } from 'react';
 
 export default function About() {
   const sectionRef = useRef<HTMLDivElement>(null);

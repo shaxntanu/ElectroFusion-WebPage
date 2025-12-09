@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+
 interface LeaderCardProps {
   name: string;
   position: string;
@@ -119,10 +123,6 @@ const leadershipData = {
     { name: 'Gunaveer Singh', position: 'Executive Member', description: '(BLAS) TSLAS, First Year', linkedin: '#' },
   ],
 };
-
-'use client';
-
-import { useEffect, useRef } from 'react';
 
 export default function Leadership() {
   const sectionRef = useRef<HTMLDivElement>(null);

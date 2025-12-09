@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+
 const researchAreas = [
   {
     icon: (
@@ -41,10 +45,6 @@ const researchAreas = [
     color: 'cherry',
   },
 ];
-
-'use client';
-
-import { useEffect, useRef } from 'react';
 
 export default function ResearchAreas() {
   const sectionRef = useRef<HTMLDivElement>(null);

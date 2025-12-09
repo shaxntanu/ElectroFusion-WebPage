@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+
 interface EventCardProps {
   date: string;
   title: string;
@@ -43,10 +47,6 @@ const pastEvents = [
   { date: 'Nov 8, 2024', title: 'Motor Control Competition', description: 'Inter-college competition on BLDC motor control algorithm optimization.', tag: 'Competition' },
   { date: 'Oct 15, 2024', title: 'Solar PV System Design', description: 'Workshop on designing and sizing solar photovoltaic systems for residential use.', tag: 'Workshop' },
 ];
-
-'use client';
-
-import { useEffect, useRef } from 'react';
 
 export default function Activities() {
   const sectionRef = useRef<HTMLDivElement>(null);
