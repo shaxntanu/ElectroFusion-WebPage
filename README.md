@@ -96,38 +96,7 @@ electrofusion-website/
 
 ---
 
-## 🎓 For Students
 
-### Why Join ElectroFusion?
-
-- 🔧 **Hands-on Projects** - Work on real EV and power electronics systems
-- 🎤 **Expert Talks** - Learn from industry professionals and researchers
-- 🏆 **Competitions** - Participate in national-level technical events
-- 🤝 **Networking** - Connect with like-minded engineers and industry partners
-- 📚 **Research Opportunities** - Contribute to cutting-edge research papers
-
-### Upcoming Events
-- EV Powertrain Design Workshop
-- Renewable Energy Integration Seminar
-- ElectroHack 2025 - 48-hour hackathon
-
----
-
-## 🌐 Connect With Us
-
-- 📧 Email: electrofusion@tiet.edu
-- 📍 Location: Department of EIED, TIET Patiala
-- 💼 LinkedIn: [ElectroFusion Research Society](#)
-- 📸 Instagram: [@electrofusion_tiet](#)
-- 💬 Discord: [Join our community](#)
-
----
-
-## 📄 License
-
-© 2024 ElectroFusion Research Society, TIET. All rights reserved.
-
----
 
 <div align="center">
 
