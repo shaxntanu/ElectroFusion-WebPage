@@ -21,24 +21,4 @@ body {
     .text-gradient {
         @apply bg-gradient-to-r from-royal to-cherry bg-clip-text text-transparent;
     }
-
-    .parallax-float {
-        animation: float 6s ease-in-out infinite;
-    }
-
-    .parallax-float-delayed {
-        animation: float 6s ease-in-out 3s infinite;
-    }
-}
-
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0px) rotate(0deg);
-    }
-
-    50% {
-        transform: translateY(-20px) rotate(5deg);
-    }
 }

@@ -1,35 +1,30 @@
 # dependencies
-v.d.ts
-xt-en
-netsbuildinfoript
-*.scel
+node_modules/
 
-# typeel
-.verc verc
+# next.js
+.next/
+out/
+build/
 
-#local
-.env*.l env files
-# loca*
-error.logarn-g*
-yg.loyarn-debu.log*
-ebugdebug
-npm-d
+# production
+dist/
+
+# misc
+.DS_Store
 *.pem
 
-# reSto# misc
-.DS_
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
+# local env files
+.env*.local
+.env
 
-/buildnuctio prod
-#t/
-ext/
-/ous
-/.n.j
-# nextverage
-sting
-/cos
+# vercel
+.vercel
 
-# tenp.j
-.p
-/.pnpules/node_mod
-node_modules
+# typescript
+*.tsbuildinfo
+next-env.d.ts
