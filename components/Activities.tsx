@@ -1,7 +1,3 @@
-'use client';
-
-import { useEffect, useRef } from 'react';
-
 interface EventCardProps {
   date: string;
   title: string;
@@ -20,7 +16,7 @@ function EventCard({ date, title, description, tag, isPast }: EventCardProps) {
   };
 
   return (
-    <div className={`event-card group bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl border border-gray-100 dark:border-gray-700 transition-all duration-300 will-change-transform ${isPast ? 'opacity-80' : ''}`}>
+    <div className={`group bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl border border-gray-100 dark:border-gray-700 transition-all duration-300 ${isPast ? 'opacity-80' : ''}`}>
       <div className="flex items-start justify-between mb-4">
         <span className={`px-3 py-1 rounded-full text-xs font-medium ${tagColors[tag] || 'bg-gray-100 text-gray-700'}`}>
           {tag}
@@ -49,29 +45,8 @@ const pastEvents = [
 ];
 
 export default function Activities() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        const cards = sectionRef.current.querySelectorAll('.event-card');
-        cards.forEach((card, index) => {
-          const speed = 0.04 + (index * 0.015);
-          const yPos = (window.scrollY - rect.top - window.innerHeight) * speed;
-          (card as HTMLElement).style.transform = `translateY(${yPos}px)`;
-        });
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <section ref={sectionRef} id="activities" className="py-20 md:py-28 bg-white dark:bg-gray-900 relative overflow-hidden">
+    <section id="activities" className="py-20 md:py-28 bg-white dark:bg-gray-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">

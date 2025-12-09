@@ -1,7 +1,3 @@
-'use client';
-
-import { useEffect, useRef } from 'react';
-
 const focusAreas = [
   {
     icon: (
@@ -43,30 +39,8 @@ const focusAreas = [
 ];
 
 export default function About() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const scrolled = window.scrollY;
-      
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        const cards = sectionRef.current.querySelectorAll('.parallax-card');
-        cards.forEach((card, index) => {
-          const speed = 0.1 + (index * 0.05);
-          const yPos = -(scrolled - rect.top) * speed;
-          (card as HTMLElement).style.transform = `translateY(${yPos}px)`;
-        });
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <section ref={sectionRef} id="about" className="py-20 md:py-28 bg-white dark:bg-gray-900 relative overflow-hidden">
+    <section id="about" className="py-20 md:py-28 bg-white dark:bg-gray-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -80,7 +54,7 @@ export default function About() {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Mission & Vision */}
           <div className="space-y-6">
-            <div className="parallax-card bg-gradient-to-br from-royal/5 to-cherry/5 dark:from-royal/10 dark:to-cherry/10 rounded-2xl p-8 will-change-transform">
+            <div className="bg-gradient-to-br from-royal/5 to-cherry/5 dark:from-royal/10 dark:to-cherry/10 rounded-2xl p-8">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                 <span className="w-10 h-10 bg-royal/10 rounded-lg flex items-center justify-center mr-3">
                   <svg className="w-5 h-5 text-royal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -94,7 +68,7 @@ export default function About() {
               </p>
             </div>
 
-            <div className="parallax-card bg-gradient-to-br from-cherry/5 to-royal/5 dark:from-cherry/10 dark:to-royal/10 rounded-2xl p-8 will-change-transform">
+            <div className="bg-gradient-to-br from-cherry/5 to-royal/5 dark:from-cherry/10 dark:to-royal/10 rounded-2xl p-8">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                 <span className="w-10 h-10 bg-cherry/10 rounded-lg flex items-center justify-center mr-3">
                   <svg className="w-5 h-5 text-cherry" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,7 +84,7 @@ export default function About() {
             </div>
 
             {/* Faculty Advisor Note */}
-            <div className="parallax-card bg-royal dark:bg-royal-dark rounded-2xl p-6 text-white will-change-transform">
+            <div className="bg-royal dark:bg-royal-dark rounded-2xl p-6 text-white">
               <h4 className="font-semibold mb-2 flex items-center">
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
