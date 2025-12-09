@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #ffffff;
+    color: #1f2937;
+}
+
+:root.dark body,
+.dark body {
+    background-color: #111827;
+    color: #f3f4f6;
+}
+
+@layer utilities {
+    .text-gradient {
+        @apply bg-gradient-to-r from-royal to-cherry bg-clip-text text-transparent;
+    }
+}
