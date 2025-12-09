@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-
 interface LeaderCardProps {
   name: string;
   position: string;
@@ -14,7 +12,7 @@ interface LeaderCardProps {
 function LeaderCard({ name, position, description, linkedin, github, isHighlighted }: LeaderCardProps) {
   return (
     <div
-      className={`leader-card group relative bg-royal dark:bg-royal-dark rounded-2xl p-6 text-white transform hover:scale-105 transition-all duration-300 hover:shadow-2xl will-change-transform ${
+      className={`group relative bg-royal dark:bg-royal-dark rounded-2xl p-6 text-white hover:shadow-2xl transition-shadow duration-300 ${
         isHighlighted ? 'ring-4 ring-cherry/50' : ''
       }`}
     >
@@ -125,29 +123,8 @@ const leadershipData = {
 };
 
 export default function Leadership() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        const cards = sectionRef.current.querySelectorAll('.leader-card');
-        cards.forEach((card, index) => {
-          const speed = 0.03 + (index * 0.01);
-          const yPos = (window.scrollY - rect.top - window.innerHeight) * speed;
-          (card as HTMLElement).style.transform = `translateY(${yPos}px)`;
-        });
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <section ref={sectionRef} id="leadership" className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
+    <section id="leadership" className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
