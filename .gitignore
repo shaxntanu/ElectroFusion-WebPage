@@ -13,6 +13,9 @@ dist/
 .DS_Store
 *.pem
 
+# IDE
+.vscode/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
