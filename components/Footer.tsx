@@ -113,11 +113,6 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-          <p>© {currentYear} ElectroFusion Research Society, TIET. All rights reserved.</p>
-        </div>
       </div>
     </footer>
   );
